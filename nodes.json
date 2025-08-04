@@ -1,0 +1,12 @@
+{
+    "character": {
+        "Monster A": {
+            "rank": "Sample Konfabulator Widget",
+            "name": "main_window",
+            "width": 500,
+            "height": 500
+        },
+        "Monster B": {},
+        "Monster C": {}
+    }
+}
