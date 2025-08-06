@@ -2,6 +2,8 @@ const _HEADER = document.getElementById("header");
 const _CONTENTS = document.getElementById("contents");
 const _LIST = document.getElementById("listId");
 
+let toggle = false;
+
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
 
 // setInterval(function () {
@@ -50,4 +52,62 @@ function addList(param) {
 
 function clearList() {
     _LIST.innerHTML = "";
+}
+
+function doTick(t) {
+    let tick = setInterval(function () {
+        /////
+        const beforeHeap = performance.memory
+            ? performance.memory.usedJSHeapSize
+            : null;
+
+        console.log(
+            beforeHeap !== null
+                ? `▶ 스크립트 시작 전 JS heap: ${(beforeHeap / 1024 / 1024).toFixed(2)} MB`
+                : "performance.memory 지원 안 함"
+        );
+
+        /////
+
+
+
+
+
+
+
+        /////
+        const afterHeap = performance.memory
+            ? performance.memory.usedJSHeapSize
+            : null;
+
+        if (afterHeap !== null) {
+            console.log(
+                `▶ 스크립트 종료 후 JS heap: ${(afterHeap / 1024 / 1024).toFixed(2)} MB`
+            );
+            console.log(
+                `   → Δ = ${((afterHeap - beforeHeap) / 1024 / 1024).toFixed(2)} MB`
+            );
+        } else {
+            console.log("performance.memory 지원 안 함");
+        }
+        /////
+    }, t);
+}
+
+function stopTick() {
+    clearInterval(tick);
+}
+
+document.getElementById("tickBtn").onclick = function (e) {
+    let interval = setInterval(() => {
+        console.log("-*-*-*-*-*-*-*- 실행중 -*-*-*-*-*-*-*-");
+    }, 3000);
+
+    if (toggle) {
+        clearInterval(interval);
+        toggle = false;
+    } else {
+        interval();
+        toggle = true;
+    }
 }
