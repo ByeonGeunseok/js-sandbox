@@ -3,6 +3,7 @@ const _CONTENTS = document.getElementById("contents");
 const _LIST = document.getElementById("listId");
 
 let toggle = false;
+let interval = null;
 
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
 
@@ -99,15 +100,15 @@ function stopTick() {
 }
 
 document.getElementById("tickBtn").onclick = function (e) {
-    let interval = setInterval(() => {
-        console.log("-*-*-*-*-*-*-*- 실행중 -*-*-*-*-*-*-*-");
-    }, 3000);
-
     if (toggle) {
         clearInterval(interval);
+        console.log("인터벌 멈춤");
         toggle = false;
     } else {
-        interval();
+        interval = setInterval(() => {
+            console.log("-*-*-*-*-*-*-*- 실행중 -*-*-*-*-*-*-*-");
+        }, 3000);
+        console.log("▶ 인터벌 시작");
         toggle = true;
     }
 }
